@@ -14,4 +14,6 @@ public interface DepartmentService {
     Department findByID(Long id);
 
     List<Department> findAll();
+
+    boolean departmentHasARolesAssociated(Long id);
 }

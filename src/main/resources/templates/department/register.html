@@ -1,140 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{layout}">
 <head>
-	<title>Basic SpringBoot</title>
 	<meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <link rel="icon" href="/image/favicon.png"/>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet"/>
-
-    <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet"/>
 </head>
-<body>
-	<header>
-		<nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="btn btn-dark navbar-toggle pull-left">
-						<i class="oi oi-menu"></i>
-					</button>
-					<img src="/image/springbooticon.png" id="header-icon">
-					<a class="navbar-brand " href="#">Simple Spring Boot CRUD</a>
-				</div>
-			</div>
-		</nav>
-	</header>
-	
-	<div class="layout-main">
-
-		<aside>
-			<nav class="sidebar sidebar-open">
-				<ul class="nav nav-pills">
-					<li class="nav-item"><a class="nav-link " href="/"> <i
-							class="oi oi-home"></i> <span>Home</span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active" >Departments</span></li>
-					<li class="nav-item"><a class="nav-link"
-											href="/departments/register"> <i class="oi oi-plus"></i> <span>Register</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-											href="/departments/list"> <i class="oi oi-spreadsheet"></i>
-						<span>List </span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active" >Roles</span></li>
-					<li class="nav-item"><a class="nav-link"
-											href="/roles/register"> <i class="oi oi-plus"></i> <span>Register</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-											href="/roles/list"> <i
-							class="oi oi-spreadsheet"></i> <span>List</span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Employees</span></li>
-					<li class="nav-item"><a class="nav-link"
-											href="/employees/register"> <i class="oi oi-plus"></i> <span>Register</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-											href="/employees/list"> <i class="oi oi-spreadsheet"></i> <span>List</span>
-					</a></li>
-				</ul>
-			</nav>
-		</aside>
-	
-	    <section class="layout-content">
+<body>	
+	<section class="layout-content" layout:fragment="content-body">
 	
 	        <nav class="navbar navbar-expand-md bg-light">
 	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 	                <ul class="navbar-nav mr-auto">
 	                    <li class="nav-item active">
 	                        <i class="oi oi-caret-right"></i>
-	                        <span>Cadastrar Departamentos</span>
+	                        <span>Register Departments</span>
 	                    </li>
 	                </ul>
-	                <a class="btn btn-primary btn-md" href="/departamentos/listar" role="button">
+	                <a class="btn btn-primary btn-md" href="/departments/list" role="button">
 	                    <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
-	                    <span>Listar Departamentos</span>
+	                    <span>List Departments</span>
 	                </a>
 	            </div>
 	        </nav>
 	
 	        <div class="container" id="cadastro">
-	            <form action="/departamentos/salvar" method="POST">
+	            <form th:action="${department.id == null} ? @{/departments/save} : @{/departments/edit}" th:object="${department}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
-	                        <label for="nome">Departamento</label>
+	                        <label for="nome">Department</label>
 	                        <input type="text" class="form-control" id="nome"
-	                               placeholder="Nome Departamento" autofocus="autofocus" name="nome" value=""/>
+	                               placeholder="Department name" autofocus="autofocus" th:field="*{name}"/>
 	                    </div>
 	                </div>
-	                <input type="hidden" id="id" name="id" value=""/>
-	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+	                <input type="hidden" id="id" th:field="*{id}"/>
+	                <button type="submit" class="btn btn-primary btn-sm">Save</button>
 	            </form>
 	        </div>
-	    </section>
-	
-	</div>
-
-	<footer class="layout-footer">
-		<div class="container">
-			<span class="footer-copy">&copy; 2023 Vinícius Souza</span>
-		</div>
-	</footer>
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="/webjars/jquery/jquery.min.js"></script>
-<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-
-    $(function () {
-        $('[data-toggle="popover"]').popover();
-    });
-    
-	$(document).ready(function(){
-	    $(".navbar-toggle").click(function(){
-	        $(".sidebar").toggleClass("sidebar-open");
-	    })
-	});
-
-</script>
+	</section>
 </body>
 </html>
