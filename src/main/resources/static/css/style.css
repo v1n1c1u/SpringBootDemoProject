@@ -26,7 +26,7 @@ body {
     width: 100%;
     padding-top: 0px;
 }
-#header-icon {
+.header-icon {
     width: 40px;
     margin-left:10px;
     margin-right:10px;

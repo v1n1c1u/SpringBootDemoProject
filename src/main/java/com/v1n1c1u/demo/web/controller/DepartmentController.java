@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.v1n1c1u.demo.domain.Department;
 import com.v1n1c1u.demo.service.DepartmentService;
@@ -30,8 +31,9 @@ public class DepartmentController {
     }
 
     @PostMapping("/save")
-    public String save(Department department){
+    public String save(Department department, RedirectAttributes attributes){
         service.save(department);
+        attributes.addFlashAttribute("success","Department saved successfully!");
         return "redirect:/departments/register";
     }
     @GetMapping("/edit/{id}")
@@ -40,14 +42,18 @@ public class DepartmentController {
         return "/department/register";
     }
     @PostMapping("/edit")
-    public String edit(Department department){
+    public String edit(Department department, RedirectAttributes attributes){
         service.edit(department);
+        attributes.addFlashAttribute("success","Department updated successfully!");
         return "redirect:/departments/register";
     }
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, ModelMap model){
-        if(!service.departmentHasARolesAssociated(id)){
+        if(service.departmentHasARolesAssociated(id)){
+            model.addAttribute("fail", "Can't delete department that has roles associated!");
+        }else{
             service.delete(id);
+            model.addAttribute("success", "Department deleted successfully!");
         }
         return list(model);
     }

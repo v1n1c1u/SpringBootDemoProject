@@ -1,23 +1,23 @@
 <div th:if="${success} != null">
-  <div>
-    <i></i>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="oi oi-check"></i>
     <span>
-      <strong></strong>
+      <strong th:tex="${success}"></strong>
     </span>
-    <button>
-      <span></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
     </button>
   </div>
 </div>
 
 <div th:if="${fail} != null">
-  <div>
-    <i></i>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <i class="oi oi-check"></i>
     <span>
-      <strong></strong>
+      <strong th:tex="${fail}"></strong>
     </span>
-    <button>
-      <span></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
     </button>
   </div>
 </div>
