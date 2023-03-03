@@ -14,4 +14,6 @@ public interface RoleService {
     Role findByID(Long id);
 
     List<Role> findAll();
+
+    boolean roleHasEmployeesAssociated(Long id);
 }

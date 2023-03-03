@@ -18,7 +18,9 @@ body {
     min-height: calc(100vh - 52px);
     overflow: hidden;
 }
-
+#navbarsExampleDefault{
+	justify-content:space-between;
+}
 /*
  * Content
  */
