@@ -22,7 +22,7 @@ public class Address extends AbstractEntity<Long>{
 
     @Column(nullable = false, length = 5)
     private Integer number;
-
+    
     private String complement;
     
     public String getComplement() {

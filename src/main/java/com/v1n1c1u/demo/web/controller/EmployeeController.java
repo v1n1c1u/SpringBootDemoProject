@@ -33,6 +33,7 @@ public class EmployeeController {
         return "employee/register";
     }
 
+
     @GetMapping("/list")
     public  String list(){
         return "employee/list";

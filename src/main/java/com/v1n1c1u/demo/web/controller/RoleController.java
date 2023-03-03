@@ -32,6 +32,7 @@ public class RoleController {
         model.addAttribute("role",new Role());
         return "role/register";
     }
+
     @GetMapping("/list")
     public String list(ModelMap model){
         model.addAttribute("roles", roleService.findAll());

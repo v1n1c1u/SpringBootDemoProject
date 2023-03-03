@@ -29,7 +29,6 @@ public class DepartmentController {
         model.addAttribute("department", service.findAll());
         return "department/list";
     }
-
     @PostMapping("/save")
     public String save(Department department, RedirectAttributes attributes){
         service.save(department);

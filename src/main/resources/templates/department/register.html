@@ -20,23 +20,22 @@
 				</a>
 			</div>
 		</nav>
-	
-	        <div class="container" id="cadastro">
+		<div class="container" id="cadastro">
 
-				<div th:replace="~{fragments/alert}"></div>
+			<div th:replace="~{fragments/alert}"></div>
 
-	            <form th:action="${department.id == null} ? @{/departments/save} : @{/departments/edit}" th:object="${department}" method="POST">
-	                <div class="form-row">
-	                    <div class="form-group col-md-6">
-	                        <label for="nome">Department</label>
-	                        <input type="text" class="form-control" id="nome"
-	                               placeholder="Department name" autofocus="autofocus" th:field="*{name}"/>
-	                    </div>
-	                </div>
-	                <input type="hidden" id="id" th:field="*{id}"/>
-	                <button type="submit" class="btn btn-primary btn-sm">Save</button>
-	            </form>
-	        </div>
+			<form th:action="${department.id == null} ? @{/departments/save} : @{/departments/edit}" th:object="${department}" method="POST">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="nome">Department</label>
+						<input type="text" class="form-control" id="nome"
+							   placeholder="Department name" autofocus="autofocus" th:field="*{name}"/>
+					</div>
+				</div>
+				<input type="hidden" id="id" th:field="*{id}"/>
+				<button type="submit" class="btn btn-primary btn-sm">Save</button>
+			</form>
+		</div>
 	</section>
 </body>
 </html>
