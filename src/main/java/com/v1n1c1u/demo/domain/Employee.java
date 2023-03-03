@@ -2,6 +2,11 @@ package com.v1n1c1u.demo.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.format.annotation.NumberFormat.Style;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -11,13 +16,16 @@ public class Employee extends AbstractEntity<Long>{
     @Column(name = "Name", nullable = false)
     private String name;
 
+    @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     @Column(name = "Salary", nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
     private BigDecimal salary;
 
-    @Column(name = "Start Date", nullable = false, columnDefinition = "DATE")
+    @DateTimeFormat(iso = ISO.DATE)
+    @Column(name = "Start_Date", nullable = false, columnDefinition = "DATE")
     private LocalDate startDate;
 
-    @Column(name = "Finish Date", nullable = false, columnDefinition = "DATE")
+    @DateTimeFormat(iso = ISO.DATE)
+    @Column(name = "Finish_Date", nullable = false, columnDefinition = "DATE")
     private LocalDate finishDate;
 
     @OneToOne(cascade = CascadeType.ALL)

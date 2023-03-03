@@ -64,4 +64,12 @@ public class Address extends AbstractEntity<Long>{
     public void setCity(String city) {
         this.city = city;
     }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
 }
