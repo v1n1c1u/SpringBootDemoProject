@@ -29,4 +29,8 @@ public class Department extends AbstractEntity<Long>{
         this.name = name;
     }
 
+    @Override
+    public String toString(){
+        return "name="+name;
+    }
 }

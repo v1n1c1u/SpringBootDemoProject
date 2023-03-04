@@ -26,7 +26,7 @@ public class DepartmentController {
 
     @GetMapping("/list")
     public String list(ModelMap model){
-        model.addAttribute("department", service.findAll());
+        model.addAttribute("departments", service.findAll());
         return "department/list";
     }
     @PostMapping("/save")

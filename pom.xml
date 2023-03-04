@@ -55,6 +55,11 @@
 			<version>1.1.1</version>
 		</dependency>
 		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.6.3</version>
+		</dependency>
+		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>jQuery-Mask-Plugin</artifactId>
 			<version>1.14.10</version>

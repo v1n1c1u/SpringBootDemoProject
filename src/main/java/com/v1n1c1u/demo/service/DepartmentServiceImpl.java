@@ -39,17 +39,17 @@ public class DepartmentServiceImpl implements DepartmentService{
         dao.delete(id);
     }
 
-    @Override
+    @Override @Transactional(readOnly = true)
     public Department findByID(Long id) {
         return dao.findById(id);
     }
 
-    @Override
+    @Override @Transactional(readOnly = true)
     public List<Department> findAll() {
         return dao.findAll();
     }
 
-    @Override
+    @Override @Transactional(readOnly = true)
     public boolean departmentHasARolesAssociated(Long id) {
         return findByID(id).getRoles().isEmpty() ? false : true;
     }

@@ -38,9 +38,9 @@
 					<div class="collapse" id="collapseNome">
 
 						<nav class="navbar navbar-light bg-light">
-							<form class="form-inline" method="GET" action="/employees/search/name">
-								<input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
-										name="nome" />
+							<form class="form-inline" method="GET" th:action="@{/employees/search/name}">
+								<input class="form-control mr-sm-2" type="search" placeholder="Name" aria-label="Search"
+										th:name="nome" />
 								<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 							</form>
 						</nav>
@@ -53,10 +53,10 @@
 					<div class="collapse" id="collapseCargo">
 
 						<nav class="navbar navbar-light bg-light">
-							<form class="form-inline" method="GET" action="/employees/search/role">
-								<select class="form-control mr-sm-2" name="cargo" aria-label="Search">
+							<form class="form-inline" method="GET" th:action="@{/employees/search/role}">
+								<select class="form-control mr-sm-2" th:name="id" aria-label="Search">
 									<option value="">Role</option>
-									<option th:each="r : ${roles}" th:value="" th:text=""></option>
+									<option th:each="r : ${roles}" th:value="${r.id}" th:text="${r.name}"></option>
 								</select>
 								<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 							</form>
@@ -70,11 +70,11 @@
 					<div class="collapse" id="collapseData">
 
 						<nav class="navbar navbar-light bg-light">
-							<form class="form-inline" method="GET" action="/employees/search/date">
+							<form class="form-inline" method="GET" th:action="@{/employees/search/date}">
 								<input class="form-control mr-sm-2" type="date" aria-label="Search"
-										name="entrada" />
+										th:name="start" />
 								<input class="form-control mr-sm-2" type="date" aria-label="Search"
-										name="saida" />
+										th:name="finish" />
 								<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 							</form>
 						</nav>

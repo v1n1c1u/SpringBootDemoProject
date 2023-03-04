@@ -39,7 +39,6 @@ public enum State {
         this.acronym = acronym;
     }
 
-
     public String getName() {
         return name;
     }

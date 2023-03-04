@@ -38,17 +38,17 @@ public class RoleServiceImpl implements RoleService{
         dao.delete(id);
     }
 
-    @Override
+    @Override @Transactional(readOnly = true)
     public Role findByID(Long id) {
         return dao.findById(id);
     }
 
-    @Override
+    @Override @Transactional(readOnly = true)
     public List<Role> findAll() {
         return dao.findAll();
     }
 
-    @Override
+    @Override @Transactional(readOnly = true)
     public boolean roleHasEmployeesAssociated(Long id) {
         return findByID(id).getEmployees().isEmpty() ? false : true;
     }

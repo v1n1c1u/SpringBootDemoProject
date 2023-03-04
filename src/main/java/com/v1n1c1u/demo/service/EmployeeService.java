@@ -1,5 +1,6 @@
 package com.v1n1c1u.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.v1n1c1u.demo.domain.Employee;
@@ -14,4 +15,10 @@ public interface EmployeeService {
     Employee findByID(Long id);
 
     List<Employee> findAll();
+
+    List<Employee> findByName(String name);
+
+    List<Employee> findByRoleID(Long roleID);
+
+    List<Employee> findByDates(LocalDate startDate, LocalDate finishDate);
 }

@@ -21,11 +21,11 @@ public class Employee extends AbstractEntity<Long>{
     private BigDecimal salary;
 
     @DateTimeFormat(iso = ISO.DATE)
-    @Column(name = "Start_Date", nullable = false, columnDefinition = "DATE")
+    @Column(name = "Start_Date", nullable = false, columnDefinition = "DATE DEFAULT NULL")
     private LocalDate startDate;
 
     @DateTimeFormat(iso = ISO.DATE)
-    @Column(name = "Finish_Date", nullable = false, columnDefinition = "DATE")
+    @Column(name = "Finish_Date", nullable = false, columnDefinition = "DATE DEFAULT NULL")
     private LocalDate finishDate;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -111,7 +111,7 @@
 						<label for="uf">State</label>
 						<select id="uf" class="form-control" th:field="*{address.state}">
 							<option value="">Select...</option>
-							<option th:each="s : ${state}" th:value="${s}" th:text="${s.acronym}"></option>
+							<option th:each="s : ${states}" th:value="${s}" th:text="${s.acronym}"></option>
 						</select>
 						<div class="invalid-feedback">
 

@@ -20,6 +20,10 @@ body {
 }
 #navbarsExampleDefault{
 	justify-content:space-between;
+	padding-right:10px;
+}
+.form-group {
+	margin-bottom: 10px;
 }
 /*
  * Content
@@ -91,9 +95,10 @@ body {
 /*
  * nav-pills home
  */
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link, .btn-primary{
 	color: #fff;
 	background-color:#0fb950; /*#1e94d2;*/
+	border-color:#26ce67;
 }
 
 /*

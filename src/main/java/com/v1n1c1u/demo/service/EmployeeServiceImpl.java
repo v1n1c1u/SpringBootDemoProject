@@ -1,5 +1,7 @@
 package com.v1n1c1u.demo.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,14 +40,33 @@ public class EmployeeServiceImpl implements EmployeeService{
         dao.delete(id);
     }
 
-    @Override
+    @Override @Transactional(readOnly = true)
     public Employee findByID(Long id) {
         return dao.findById(id);
     }
 
-    @Override
+    @Override @Transactional(readOnly = true)
     public List<Employee> findAll() {
         return dao.findAll();
     }
-    
+
+    @Override @Transactional(readOnly = true)
+    public List<Employee> findByName(String name) {
+        return dao.findByName(name);
+    }
+
+    @Override @Transactional(readOnly = true)
+    public List<Employee> findByRoleID(Long roleID) {return dao.findByRoleID(roleID);}
+
+    @Override @Transactional(readOnly = true)
+    public List<Employee> findByDates(LocalDate startDate, LocalDate finishDate) {
+        if(startDate != null && finishDate != null){
+            return dao.findByStartAndFinishDate(startDate, finishDate);
+        } else if (startDate != null) {
+            return dao.findByStartDate(startDate);
+        } else if (finishDate != null) {
+            return dao.findByFinishDate(finishDate);
+        }
+        return new ArrayList<>();
+    }
 }
