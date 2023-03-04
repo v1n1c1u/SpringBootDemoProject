@@ -100,6 +100,10 @@ body {
 	background-color:#0fb950; /*#1e94d2;*/
 	border-color:#26ce67;
 }
+.btn-primary:hover, .btn-primary:active{
+	background-color:#37bd6a; /*#1e94d2;*/
+	border-color:#26ce67;
+}
 
 /*
  * toogle do navbar do menu
@@ -128,4 +132,26 @@ body {
 	display: block;
 	color: #777777;
 	text-align: center;
+}
+.btn-default:hover {
+    background-color:lightgray;
+}
+.close-button{
+    border-style: none;
+    background-color:inherit;
+}
+.modal-header{
+    display:block;
+}
+.modal-header-title {
+    width: 100%;
+    text-align:center;
+}
+.modal-body{
+    text-align:center;
+}
+.modal-footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
