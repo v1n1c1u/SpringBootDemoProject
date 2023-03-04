@@ -2,24 +2,34 @@ package com.v1n1c1u.demo.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "ADDRESSES")
 public class Address extends AbstractEntity<Long>{
-    
+
+    @NotBlank
+    @Size(min=3,max=255)
     @Column(nullable = false)
     private String address;
 
+    @NotBlank
+    @Size(min=3,max=255)
     @Column(nullable = false)
     private String city;
 
+    @NotNull(message = "{NotNull.address.state}")
     @Column(nullable = false, length = 2)
     @Enumerated(EnumType.STRING)
     private State state;
-    
+
+    @NotBlank
+    @Size(min=9,max=9, message = "{Size.address.postalCode}")
     @Column(nullable = false, length = 9)
     private String postalCode;
 
+    @NotNull(message = "{NotNull.address.number}")
+    @Digits(integer = 5, fraction = 0)
     @Column(nullable = false, length = 5)
     private Integer number;
     

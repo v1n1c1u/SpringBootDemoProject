@@ -2,10 +2,15 @@ package com.v1n1c1u.demo.web.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import com.v1n1c1u.demo.web.validator.EmployeeValidator;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -25,6 +30,10 @@ public class EmployeeController {
     @Autowired
     private RoleService roleService;
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+        binder.addValidators(new EmployeeValidator());
+    }
     @GetMapping("/register")
     public String register(ModelMap model){
         model.addAttribute("employee",new Employee());
@@ -39,7 +48,10 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public String save(Employee employee, RedirectAttributes attributes){
+    public String save(@Valid Employee employee, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            return "/employee/register";
+        }
         employeeService.save(employee);
         attributes.addFlashAttribute("success", "Employee registered successfully!");
         return "redirect:/employees/register";
@@ -50,7 +62,10 @@ public class EmployeeController {
         return "/employee/register";
     }
     @PostMapping("/edit")
-    public String edit(Employee employee, RedirectAttributes attributes){
+    public String edit(@Valid Employee employee, BindingResult result,RedirectAttributes attributes){
+        if(result.hasErrors()){
+            return "/employee/register";
+        }
         employeeService.edit(employee);
         attributes.addFlashAttribute("success","Employee updated successfully!");
         return "redirect:/employees/register";

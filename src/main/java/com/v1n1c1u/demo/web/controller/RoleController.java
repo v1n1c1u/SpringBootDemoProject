@@ -1,10 +1,13 @@
 package com.v1n1c1u.demo.web.controller;
 
 import java.util.List;
+
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +42,10 @@ public class RoleController {
         return "role/list";
     }
     @PostMapping("/save")
-    public String save(Role role, RedirectAttributes attributes){
+    public String save(@Valid Role role, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            return "/role/register";
+        }
         roleService.save(role);
         attributes.addFlashAttribute("success","Role registered successfully!");
         return "redirect:/roles/register";
@@ -54,7 +60,10 @@ public class RoleController {
         return "/role/register";
     }
     @PostMapping("/edit")
-    public String edit(Role role, RedirectAttributes attributes){
+    public String edit(@Valid Role role, BindingResult result,RedirectAttributes attributes){
+        if(result.hasErrors()){
+            return "/role/register";
+        }
         roleService.edit(role);
         attributes.addFlashAttribute("success","Role updated successfully!");
         return "redirect:/roles/register";

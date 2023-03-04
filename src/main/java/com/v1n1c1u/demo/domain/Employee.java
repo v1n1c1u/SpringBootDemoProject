@@ -2,6 +2,8 @@ package com.v1n1c1u.demo.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -13,25 +15,31 @@ import jakarta.persistence.*;
 @Table(name = "EMPLOYEES")
 public class Employee extends AbstractEntity<Long>{
 
+    @NotBlank
+    @Size(max = 255, min = 3)
     @Column(name = "Name", nullable = false)
     private String name;
 
+    @NotNull
     @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     @Column(name = "Salary", nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
     private BigDecimal salary;
 
+    @PastOrPresent(message = "{PastOrPresent.employee.startDate}")
     @DateTimeFormat(iso = ISO.DATE)
-    @Column(name = "Start_Date", nullable = false, columnDefinition = "DATE DEFAULT NULL")
+    @Column(name = "Start_Date", nullable = false, columnDefinition = "DATE DEFAULT TO_DATE('01/01/2000', 'MM/dd/yyyy')")
     private LocalDate startDate;
 
     @DateTimeFormat(iso = ISO.DATE)
-    @Column(name = "Finish_Date", nullable = false, columnDefinition = "DATE DEFAULT NULL")
+    @Column(name = "Finish_Date", nullable = true, columnDefinition = "DATE DEFAULT TO_DATE('01/01/2000', 'MM/dd/yyyy')")
     private LocalDate finishDate;
 
+    @Valid
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id_fk")
     private Address address;
 
+    @NotNull(message = "{NotNull.employee.role}")
     @ManyToOne
     @JoinColumn(name = "role_id_fk")
     private Role role;

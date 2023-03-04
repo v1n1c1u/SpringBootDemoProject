@@ -1,8 +1,10 @@
 package com.v1n1c1u.demo.web.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +32,10 @@ public class DepartmentController {
         return "department/list";
     }
     @PostMapping("/save")
-    public String save(Department department, RedirectAttributes attributes){
+    public String save(@Valid Department department, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            return "/department/register";
+        }
         service.save(department);
         attributes.addFlashAttribute("success","Department saved successfully!");
         return "redirect:/departments/register";
@@ -41,7 +46,10 @@ public class DepartmentController {
         return "/department/register";
     }
     @PostMapping("/edit")
-    public String edit(Department department, RedirectAttributes attributes){
+    public String edit(@Valid Department department,BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            return "/department/register";
+        }
         service.edit(department);
         attributes.addFlashAttribute("success","Department updated successfully!");
         return "redirect:/departments/register";
