@@ -11,54 +11,48 @@ import org.springframework.transaction.annotation.Transactional;
 import com.v1n1c1u.demo.dao.EmployeeDAO;
 import com.v1n1c1u.demo.domain.Employee;
 
-@Service @Transactional(readOnly = false)
+@Service @Transactional(readOnly = true)
 public class EmployeeServiceImpl implements EmployeeService{
 
     @Autowired
     private EmployeeDAO dao;
-
-    public EmployeeDAO getDao() {
-        return dao;
-    }
-
-    public void setDao(EmployeeDAO dao) {
-        this.dao = dao;
-    }
-
+    @Transactional(readOnly = false)
     @Override
     public void save(Employee employee) {
         dao.save(employee);
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void edit(Employee employee) {
         dao.update(employee);
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void delete(Long id) {
         dao.delete(id);
     }
 
-    @Override @Transactional(readOnly = true)
+    @Override
     public Employee findByID(Long id) {
         return dao.findById(id);
     }
 
-    @Override @Transactional(readOnly = true)
+    @Override
     public List<Employee> findAll() {
         return dao.findAll();
     }
 
-    @Override @Transactional(readOnly = true)
+    @Override
     public List<Employee> findByName(String name) {
         return dao.findByName(name);
     }
 
-    @Override @Transactional(readOnly = true)
+    @Override
     public List<Employee> findByRoleID(Long roleID) {return dao.findByRoleID(roleID);}
 
-    @Override @Transactional(readOnly = true)
+    @Override
     public List<Employee> findByDates(LocalDate startDate, LocalDate finishDate) {
         if(startDate != null && finishDate != null){
             return dao.findByStartAndFinishDate(startDate, finishDate);
@@ -69,4 +63,13 @@ public class EmployeeServiceImpl implements EmployeeService{
         }
         return new ArrayList<>();
     }
+
+    public EmployeeDAO getDao() {
+        return dao;
+    }
+
+    public void setDao(EmployeeDAO dao) {
+        this.dao = dao;
+    }
+
 }

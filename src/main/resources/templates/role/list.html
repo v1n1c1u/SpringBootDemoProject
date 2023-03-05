@@ -5,20 +5,22 @@
 </head>
 <body>
 	<section class="layout-content" layout:fragment="content-body">
-		<nav class="navbar navbar-expand-md bg-light">
-			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<i class="oi oi-caret-right"></i>
-						<span>Role List</span>
-					</li>
-				</ul>
-			</div>
-			<a class="btn btn-primary btn-md" href="/roles/register" role="button">
-				<span class="oi oi-plus" title="Register" aria-hidden="true"></span>
-				<span>New Role</span>
-			</a>
-		</nav>
+		<div class="page-header">
+			<nav class="navbar navbar-expand-md bg-light">
+				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<i class="oi oi-caret-right"></i>
+							<span>Role List</span>
+						</li>
+					</ul>
+				</div>
+				<a class="btn btn-primary btn-md" href="/roles/register" role="button">
+					<span class="oi oi-plus" title="Register" aria-hidden="true"></span>
+					<span>New Role</span>
+				</a>
+			</nav>
+		</div>
 
 		<div class="container" id="listagem">
 			<div class="table-responsive">
@@ -35,7 +37,7 @@
 						<tr th:each="r : ${roles}">
 							<td th:text="${r.id}"></td>
 							<td th:text="${r.name}"></td>
-							<td th:text="${r.department.name}"></td>
+							<td th:text="${r.department == null ? 'None' : r.department.name}"></td>
 							<td colspan="2">
 								<a class="btn btn-info btn-sm" th:href="@{/roles/edit/{id} (id=${r.id})}"  role="button">
 									<span class="oi oi-brush" title="Edit" aria-hidden="true"></span>

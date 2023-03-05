@@ -82,4 +82,16 @@ public class Address extends AbstractEntity<Long>{
     public void setNumber(Integer number) {
         this.number = number;
     }
+
+    //@Override
+    public String toString2() {
+        return "Address{" +
+                "address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state=" + state.getAcronym() +
+                ", postalCode='" + postalCode + '\'' +
+                ", number=" + number +
+                ", complement='" + complement + '\'' +
+                '}';
+    }
 }

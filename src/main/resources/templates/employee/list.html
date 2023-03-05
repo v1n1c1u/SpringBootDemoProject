@@ -23,19 +23,19 @@
 
 			<p>
 				<i class="oi oi-magnifying-glass"></i><span></span>
-				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNome"
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseName"
 						aria-controls="collapseNome">Name
 				</button>
-				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCargo"
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRole"
 						aria-controls="collapseCargo">Role
 				</button>
-				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseData"
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseDate"
 						aria-controls="collapseData">Dates
 				</button>
 			</p>
 			<div class="row">
 				<div class="col">
-					<div class="collapse" id="collapseNome">
+					<div class="collapse" id="collapseName">
 
 						<nav class="navbar navbar-light bg-light">
 							<form class="form-inline" method="GET" th:action="@{/employees/search/name}">
@@ -50,8 +50,7 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<div class="collapse" id="collapseCargo">
-
+					<div class="collapse" id="collapseRole">
 						<nav class="navbar navbar-light bg-light">
 							<form class="form-inline" method="GET" th:action="@{/employees/search/role}">
 								<select class="form-control mr-sm-2" th:name="id" aria-label="Search">
@@ -67,8 +66,7 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<div class="collapse" id="collapseData">
-
+					<div class="collapse" id="collapseDate">
 						<nav class="navbar navbar-light bg-light">
 							<form class="form-inline" method="GET" th:action="@{/employees/search/date}">
 								<input class="form-control mr-sm-2" type="date" aria-label="Search"
@@ -96,7 +94,7 @@
 						<th>Role</th>
 						<th>Address</th>
 						<th>Start Date</th>
-						<th>Finish Date</th>
+						<th>Termination Date</th>
 						<th>Action</th>
 					</tr>
 					</thead>
@@ -110,25 +108,29 @@
 							<td>
 								<button type="button" class="btn btn-secondary btn-sm" data-container="body"
 										data-toggle="popover" data-placement="top"
-										th:attr="data-content=${#strings.concat(
-											e.address.address, ', ',
-											e.address.number, ' ',
-											e.address.complement,, ' - ',
-											e.address.city, ' - ',
-											e.address.state.acronym, ' - ',
-											e.address.postalCode
-										)}">
+										th:attr="data-content=${e.address.address}"
+								>
+										<!--
+										th:/attr="data-content=${#strings.concat(
+											e./address.address, ', ',
+											e./address.number, ' ',
+											e./address.complement,, ' - ',
+											e./address.city, ' - ',
+											e./address.state.acronym, ' - ',
+											e./address.postalCode
+										)}"
+										-->
 									<span class="oi oi-eye" title="Visualize" aria-hidden="true"></span>
 								</button>
 							</td>
 							<td th:text="${#temporals.format(e.startDate, 'dd/MM/yyyy')}"></td>
-							<td th:text="${#temporals.format(e.finishDate, 'dd/MM/yyyy')}"></td>
+							<td th:text="${e.finishDate == null ? '':#temporals.format(e.finishDate, 'dd/MM/yyyy')}"></td>
 							<td></td>
 							<td colspan="2">
-								<a class="btn btn-info btn-sm" th:href="/employees/edit/{id} (id=${e.id})" role="button">
+								<a class="btn btn-info btn-sm" th:href="@{/employees/edit/{id} (id=${e.id})}" role="button">
 									<span class="oi oi-brush" title="Edit" aria-hidden="true"></span>
 								</a>
-								<button th:id="${#string.concat('btn_employees/delete/', e.id)'}" type="button" class="btn btn-danger btn-sm"
+								<button th:id="${ 'btn_employees/delete/' + e.id}" type="button" class="btn btn-danger btn-sm"
 										data-toggle="modal" data-target="#myModal">
 									<span class="oi oi-circle-x" title="Delete" aria-hidden="true"></span>
 								</button>

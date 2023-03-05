@@ -1,6 +1,7 @@
 package com.v1n1c1u.demo.web.controller;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 import com.v1n1c1u.demo.web.validator.EmployeeValidator;
@@ -42,6 +43,7 @@ public class EmployeeController {
 
     @GetMapping("/list")
     public  String list(ModelMap model){
+        //System.out.println(Arrays.toString(employeeService.findAll().toArray()));
         model.addAttribute("employees", employeeService.findAll());
         model.addAttribute("roles", roleService.findAll());
         return "employee/list";
@@ -94,6 +96,11 @@ public class EmployeeController {
         return "/employee/list";
     }
 
+    @GetMapping("/get/{id}")
+    public String getById(@PathVariable("id") Long id, ModelMap model){
+        System.out.println(employeeService.findByID(id));
+        return "redirect:/employees/list";
+    }
     @ModelAttribute("roles")
     public List<Role> getRoles(){
         return roleService.findAll();

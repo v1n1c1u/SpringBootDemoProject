@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -15,6 +16,7 @@ public class Role extends AbstractEntity<Long>{
     @Column(name = "name", nullable = false, unique = true, length = 60)
     private String name;
 
+    @NotNull(message = "Specify a department")
     @ManyToOne
     @JoinColumn(name = "id_department_fk")
     private Department department;
@@ -44,5 +46,14 @@ public class Role extends AbstractEntity<Long>{
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "name='" + name + '\'' +
+                ", department=" + department+
+                ", employees=" + employees +
+                '}';
     }
 }

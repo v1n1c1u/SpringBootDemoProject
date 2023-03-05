@@ -25,13 +25,14 @@ public class Employee extends AbstractEntity<Long>{
     @Column(name = "Salary", nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
     private BigDecimal salary;
 
+    @NotNull
     @PastOrPresent(message = "{PastOrPresent.employee.startDate}")
-    @DateTimeFormat(iso = ISO.DATE)
-    @Column(name = "Start_Date", nullable = false, columnDefinition = "DATE DEFAULT TO_DATE('01/01/2000', 'MM/dd/yyyy')")
+    @DateTimeFormat(iso = ISO.DATE, pattern = "")
+    @Column(name = "Start_Date", nullable = false, columnDefinition = "DATE")
     private LocalDate startDate;
 
     @DateTimeFormat(iso = ISO.DATE)
-    @Column(name = "Finish_Date", nullable = true, columnDefinition = "DATE DEFAULT TO_DATE('01/01/2000', 'MM/dd/yyyy')")
+    @Column(name = "Finish_Date", nullable = true, columnDefinition = "DATE")
     private LocalDate finishDate;
 
     @Valid
@@ -80,5 +81,17 @@ public class Employee extends AbstractEntity<Long>{
     }
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", salary=" + salary +
+                ", startDate=" + startDate +
+                ", finishDate=" + finishDate +
+                ", address=" + address+
+                ", role=" + role +
+                '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.v1n1c1u.demo.web.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import jakarta.validation.Valid;
@@ -77,6 +78,7 @@ public class RoleController {
             roleService.delete(id);
             attributes.addFlashAttribute("success", "Role deleted successfully!");
         }
+        roleService.delete(id);
         return "redirect:/roles/list";
     }
 
