@@ -35,6 +35,7 @@ body {
 .layout-content {
     width: 100%;
     padding-top: 0px;
+    min-height: fit-content;
 }
 .header-icon {
     width: 40px;
@@ -128,6 +129,7 @@ body {
     display: flex;
     justify-content: space-between;
 }
+
 /*
  * Footer
  */
@@ -147,6 +149,24 @@ body {
 	color: #777777;
 	text-align: center;
 }
+footer a {
+    color:#777777;
+    margin-right: 20px;
+}
+footer a:hover {
+    color: #0fb950;
+}
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top:6px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    font-size: 32px;
+}
 .btn-default:hover {
     background-color:lightgray;
 }
@@ -157,12 +177,21 @@ body {
 .modal-header{
     display:block;
 }
+
 .modal-header-title {
     width: 100%;
     text-align:center;
+    color: rgb(231, 67, 67);
+    font-size: 24px;
+    font-weight: bold;
+}
+.modal-header-title i {
+    font-size: 20px;
 }
 .modal-body{
+    height: 150px;
     text-align:center;
+    font-size: 18px;
 }
 .modal-footer {
     width: 100%;
@@ -176,4 +205,22 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.about-div {
+    font-size: 24px;
+    text-align: center;
+}
+.about-text {
+    width: 500px;
+    margin: auto;
+    text-align: justify;
+}
+.hello-text{
+    font-size: 52px;
+    color: #0fb950;
+    font-weight: bold;
+}
+.uppercase-span {
+    text-transform: uppercase;
 }
