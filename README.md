@@ -7,3 +7,5 @@ Hopefully it is a good showcase of my freshly obtained full-stack development sk
 ## Observation!
 
 This project is not 100% finished yet, so not all functionalities are working right now... :(
+
+And you might have to have MySQL installed in order to run the program
