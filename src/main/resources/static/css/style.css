@@ -39,6 +39,9 @@ body {
 .search-button {
     min-width:100px !important;
 }
+.search-tag {
+    border-radius: 20px 20px 20px 20px;
+}
 /*
  * Content
  */
