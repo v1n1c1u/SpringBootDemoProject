@@ -34,7 +34,7 @@
 	                    </tr>
 	                    </thead>
 	                    <tbody>
-							<tr th:each="d : ${departments}">
+							<tr th:each="d : ${pageDepartments.data}">
 								<td th:text="${d.id}"></td>
 								<td th:text="${d.name}"></td>
 								<td colspan="2">
@@ -48,6 +48,25 @@
 							</tr>
 	                    </tbody>
 	                </table>
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<li class="$page-item">
+								<a class="page-link" th:href="@{/departments/list(page=${1})}" tabindex="-1">First</a>
+							</li>
+							<li th:class="${pageDepartments.page == 1} ? 'page-item disabled' : 'page-item'">
+								<a class="page-link" th:href="@{/departments/list(page=${pageDepartments.page - 1})}" tabindex="-1">Previous</a>
+							</li>
+							<li class="page-item">
+								<span class="page-link" th:text="|${pageDepartments.page} of ${pageDepartments.totalPages}|"></span>
+							</li>
+							<li th:class="${pageDepartments.page == pageDepartments.totalPages} ? 'page-item disabled' : 'page-item'">
+								<a class="page-link" th:href="@{/departments/list(page=${pageDepartments.page + 1})}">Next</a>
+							</li>
+							<li class="$page-item">
+								<a class="page-link" th:href="@{/departments/list(page=${pageDepartments.totalPages})}" tabindex="-1">Last</a>
+							</li>
+						</ul>
+					</nav>
 	            </div>
 	        </div>
 			<div th:replace="~{fragments/modal :: modal}"></div>

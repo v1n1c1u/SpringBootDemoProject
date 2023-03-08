@@ -28,13 +28,17 @@
 					<thead>
 					<tr>
 						<th>#</th>
-						<th>Role</th>
+						<th>
+							<a th:href="@{/roles/list(page=${pageRole.page},order=DESC)}" tabindex="-1" title="Order descending"><i class="oi oi-arrow-bottom"></i></a>
+							Role
+							<a th:href="@{/roles/list(page=${pageRole.page},order=ASC)}" tabindex="-1" title="Order ascending"><i class="oi oi-arrow-top"></i></a>
+						</th>
 						<th>Department</th>
 						<th>Actions</th>
 					</tr>
 					</thead>
 					<tbody>
-						<tr th:each="r : ${roles}">
+						<tr th:each="r : ${pageRole.data}">
 							<td th:text="${r.id}"></td>
 							<td th:text="${r.name}"></td>
 							<td th:text="${r.department == null ? 'None' : r.department.name}"></td>
@@ -50,6 +54,25 @@
 						</tr>
 					</tbody>
 				</table>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<li class="$page-item">
+							<a class="page-link" th:href="@{/roles/list(page=${1}, order=${pageRole.order})}" tabindex="-1">First</a>
+						</li>
+						<li th:class="${pageRole.page == 1} ? 'page-item disabled' : 'page-item'">
+							<a class="page-link" th:href="@{/roles/list(page=${pageRole.page - 1}, order=${pageRole.order})}" tabindex="-1">Previous</a>
+						</li>
+						<li class="page-item">
+							<span class="page-link" th:text="|${pageRole.page} of ${pageRole.totalPages}|"></span>
+						</li>
+						<li th:class="${pageRole.page == pageRole.totalPages} ? 'page-item disabled' : 'page-item'">
+							<a class="page-link" th:href="@{/roles/list(page=${pageRole.page + 1}, order=${pageRole.order})}">Next</a>
+						</li>
+						<li class="$page-item">
+							<a class="page-link" th:href="@{/roles/list(page=${pageRole.totalPages}, order=${pageRole.order})}" tabindex="-1">Last</a>
+						</li>
+					</ul>
+				</nav>
 			</div>
 		</div>
 		<div th:replace="~{fragments/modal :: modal}"></div>

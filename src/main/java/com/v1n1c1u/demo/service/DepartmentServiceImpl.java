@@ -2,6 +2,7 @@ package com.v1n1c1u.demo.service;
 
 import java.util.List;
 
+import com.v1n1c1u.demo.util.PaginationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,5 +54,9 @@ public class DepartmentServiceImpl implements DepartmentService{
     public boolean departmentHasARolesAssociated(Long id) {
         return findByID(id).getRoles().isEmpty() ? false : true;
     }
-    
+
+    @Override
+    public PaginationUtil<Department> getPagination(int page, String order) {
+        return dao.getPagination(page, order);
+    }
 }

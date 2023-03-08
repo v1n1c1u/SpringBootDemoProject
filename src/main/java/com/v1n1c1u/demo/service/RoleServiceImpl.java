@@ -3,6 +3,7 @@ package com.v1n1c1u.demo.service;
 import java.util.Arrays;
 import java.util.List;
 
+import com.v1n1c1u.demo.util.PaginationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,6 +53,11 @@ public class RoleServiceImpl implements RoleService{
     @Override @Transactional(readOnly = true)
     public boolean roleHasEmployeesAssociated(Long id) {
         return findByID(id).getEmployees().isEmpty() ? false : true;
+    }
+
+    @Override
+    public PaginationUtil<Role> getPagination(int page, String order) {
+        return dao.getPagination(page, order);
     }
 
 }

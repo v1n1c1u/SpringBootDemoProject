@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.v1n1c1u.demo.domain.Employee;
+import com.v1n1c1u.demo.util.PaginationUtil;
 
 public interface EmployeeDAO {
     public void save(Employee entity);
@@ -25,4 +26,6 @@ public interface EmployeeDAO {
 	List<Employee> findByStartDate(LocalDate startDate);
 
 	List<Employee> findByFinishDate(LocalDate finishDate);
+
+	public PaginationUtil<Employee> getPagination(int page, String order);
 }

@@ -1,6 +1,6 @@
 package com.v1n1c1u.demo.dao;
 
-import jakarta.persistence.TypedQuery;
+import com.v1n1c1u.demo.util.PaginationUtil;
 import org.springframework.stereotype.Repository;
 
 import com.v1n1c1u.demo.domain.Employee;
@@ -59,5 +59,21 @@ public class EmployeeDAOImpl extends AbstractDAO<Employee, Long> implements Empl
         return createQuery(
                 query,
                 finishDate);
+    }
+    public PaginationUtil<Employee> getPagination(int page, String order){
+        int size = 5;
+        int start = (page-1) * size;
+        long totalPages = (count()+(size-1))/size;
+        List<Employee> employees = getEntityManager()
+                .createQuery("SELECT E FROM Employee E ORDER BY E.name "+order, Employee.class)
+                .setFirstResult(start)
+                .setMaxResults(size)
+                .getResultList();
+        return new PaginationUtil<>(size, page, totalPages, employees, order);
+    }
+    public long count(){
+        return getEntityManager()
+                .createQuery("SELECT COUNT(*) FROM Employee", Long.class)
+                .getSingleResult();
     }
 }

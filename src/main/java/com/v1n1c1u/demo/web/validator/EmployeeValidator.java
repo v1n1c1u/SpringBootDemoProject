@@ -2,15 +2,17 @@ package com.v1n1c1u.demo.web.validator;
 
 
 import com.v1n1c1u.demo.domain.Employee;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
 
+@Component
 public class EmployeeValidator implements Validator {
     @Override
     public boolean supports(Class<?> clazz) {
-        return Employee.class.equals(clazz);
+        return Employee.class.isAssignableFrom(clazz);
     }
 
     @Override
