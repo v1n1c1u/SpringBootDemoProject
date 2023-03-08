@@ -22,14 +22,14 @@
 		<div class="container">
 
 			<p>
-				<i class="oi oi-magnifying-glass"></i><span></span>
-				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseName"
+				<span>Search by: </span>
+				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" href="#collapseName"
 						aria-controls="collapseName">Name
 				</button>
-				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRole"
+				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" href="#collapseRole"
 						aria-controls="collapseCargo">Role
 				</button>
-				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseDate"
+				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" href="#collapseDate"
 						aria-controls="collapseData">Dates
 				</button>
 			</p>
@@ -37,10 +37,13 @@
 				<div class="col">
 					<div class="collapse" id="collapseName">
 						<nav class="navbar navbar-light bg-light">
-							<form class="form-inline" method="GET" th:action="@{/employees/search/name}">
+							<form class="form-inline search-form" method="GET" th:action="@{/employees/search/name}">
 								<input class="form-control mr-sm-2" type="search" placeholder="Name" aria-label="Search"
-										th:name="nome" />
-								<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+										th:name="name" />
+								<button class="btn btn-outline-success my-2 my-sm-0 search-button">
+									<i class="oi oi-magnifying-glass"></i>
+									Search
+								</button>
 							</form>
 						</nav>
 
@@ -51,12 +54,15 @@
 				<div class="col">
 					<div class="collapse" id="collapseRole">
 						<nav class="navbar navbar-light bg-light">
-							<form class="form-inline" method="GET" th:action="@{/employees/search/role}">
+							<form class="form-inline search-form" method="GET" th:action="@{/employees/search/role}">
 								<select class="form-control mr-sm-2" th:name="id" aria-label="Search">
 									<option value="">Role</option>
 									<option th:each="r : ${roles}" th:value="${r.id}" th:text="${r.name}"></option>
 								</select>
-								<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+								<button class="btn btn-outline-success my-2 my-sm-0 search-button">
+									<i class="oi oi-magnifying-glass"></i>
+									Search
+								</button>
 							</form>
 						</nav>
 
@@ -67,12 +73,15 @@
 				<div class="col">
 					<div class="collapse" id="collapseDate">
 						<nav class="navbar navbar-light bg-light">
-							<form class="form-inline" method="GET" th:action="@{/employees/search/date}">
+							<form class="form-inline search-form" method="GET" th:action="@{/employees/search/date}">
 								<input class="form-control mr-sm-2" type="date" aria-label="Search"
 										th:name="start" />
 								<input class="form-control mr-sm-2" type="date" aria-label="Search"
 										th:name="finish" />
-								<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+								<button class="btn btn-outline-success my-2 my-sm-0 search-button">
+									<i class="oi oi-magnifying-glass"></i>
+									Search
+								</button>
 							</form>
 						</nav>
 

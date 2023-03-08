@@ -32,6 +32,13 @@ body {
 .form-inline{
     display:flex;
 }
+.search-form > input, .search-form > select{
+    margin-right:10px;
+}
+
+.search-button {
+    min-width:100px !important;
+}
 /*
  * Content
  */
