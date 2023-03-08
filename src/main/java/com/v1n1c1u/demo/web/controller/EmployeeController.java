@@ -3,7 +3,9 @@ package com.v1n1c1u.demo.web.controller;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+import com.v1n1c1u.demo.util.PaginationUtil;
 import com.v1n1c1u.demo.web.validator.EmployeeValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +33,17 @@ public class EmployeeController {
     @Autowired
     private RoleService roleService;
 
-    @InitBinder
+
+    @InitBinder("Employee")
     public void initBinder(WebDataBinder binder){
-        binder.addValidators(new EmployeeValidator());
+        try {
+            binder.addValidators(new EmployeeValidator());
+        }catch(IllegalStateException e){
+            e.printStackTrace();
+        }
     }
+
+
     @GetMapping("/register")
     public String register(ModelMap model){
         model.addAttribute("employee",new Employee());
@@ -42,10 +51,16 @@ public class EmployeeController {
     }
 
     @GetMapping("/list")
-    public  String list(ModelMap model){
-        //System.out.println(Arrays.toString(employeeService.findAll().toArray()));
-        model.addAttribute("employees", employeeService.findAll());
+    public  String list(ModelMap model,
+                        @RequestParam("page") Optional<Integer> page,
+                        @RequestParam("order") Optional<String> order){
         model.addAttribute("roles", roleService.findAll());
+
+        int currentPage = page.orElse(1);
+        String orderDirection = order.orElse("ASC");
+        PaginationUtil<Employee> pageEmployee = employeeService.getPagination(currentPage, orderDirection);
+        model.addAttribute("pageEmployee", pageEmployee);
+
         return "employee/list";
     }
 
@@ -125,5 +140,4 @@ public class EmployeeController {
     public void setEmployeeService(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
 }

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.v1n1c1u.demo.util.PaginationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +63,11 @@ public class EmployeeServiceImpl implements EmployeeService{
             return dao.findByFinishDate(finishDate);
         }
         return new ArrayList<>();
+    }
+
+    @Override
+    public PaginationUtil<Employee> getPagination(int page, String order) {
+        return dao.getPagination(page, order);
     }
 
     public EmployeeDAO getDao() {

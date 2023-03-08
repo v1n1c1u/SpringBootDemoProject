@@ -28,7 +28,11 @@
 					<thead>
 					<tr>
 						<th>#</th>
-						<th>Role</th>
+						<th>
+							<a th:href="@{/roles/list(page=${pageRole.page},order=DESC)}" tabindex="-1" title="Order descending"><i class="oi oi-arrow-bottom"></i></a>
+							Role
+							<a th:href="@{/roles/list(page=${pageRole.page},order=ASC)}" tabindex="-1" title="Order ascending"><i class="oi oi-arrow-top"></i></a>
+						</th>
 						<th>Department</th>
 						<th>Actions</th>
 					</tr>
@@ -52,14 +56,20 @@
 				</table>
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center">
-						<li class="page-item disabled">
-							<a class="page-link" th:href="@{/roles/list(page=${pageRole.page - 1})}" tabindex="-1">Previous</a>
+						<li class="$page-item">
+							<a class="page-link" th:href="@{/roles/list(page=${1}, order=${pageRole.order})}" tabindex="-1">First</a>
 						</li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li th:class="${pageRole.page == 1} ? 'page-item disabled' : 'page-item'">
+							<a class="page-link" th:href="@{/roles/list(page=${pageRole.page - 1}, order=${pageRole.order})}" tabindex="-1">Previous</a>
+						</li>
 						<li class="page-item">
-							<a class="page-link" th:href="@{/roles/list(page=${pageRole.page + 1})}">Next</a>
+							<span class="page-link" th:text="|${pageRole.page} of ${pageRole.totalPages}|"></span>
+						</li>
+						<li th:class="${pageRole.page == pageRole.totalPages} ? 'page-item disabled' : 'page-item'">
+							<a class="page-link" th:href="@{/roles/list(page=${pageRole.page + 1}, order=${pageRole.order})}">Next</a>
+						</li>
+						<li class="$page-item">
+							<a class="page-link" th:href="@{/roles/list(page=${pageRole.totalPages}, order=${pageRole.order})}" tabindex="-1">Last</a>
 						</li>
 					</ul>
 				</nav>

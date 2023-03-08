@@ -11,20 +11,20 @@ import java.util.List;
 @Repository
 public class RoleDAOImpl extends AbstractDAO<Role, Long> implements RoleDAO{
 
-    public PaginationUtil<Role> getPagination(int page){
+    public PaginationUtil<Role> getPagination(int page, String order){
         int size = 5;
         int start = (page-1) * size;
         long totalPages = (count()+(size-1))/size;
         List<Role> roles = getEntityManager()
-                .createQuery("SELECT R FROM ROLES R ORDER BY R.NAME ASC", Role.class)
+                .createQuery("SELECT R FROM Role R ORDER BY R.name "+order, Role.class)
                 .setFirstResult(start)
                 .setMaxResults(size)
                 .getResultList();
-        return new PaginationUtil<>(size, page, totalPages, roles);
+        return new PaginationUtil<>(size, page, totalPages, roles, order);
     }
     public long count(){
         return getEntityManager()
-                .createQuery("SELECT COUNT(*) FROM ROLES", Long.class)
+                .createQuery("SELECT COUNT(*) FROM Role", Long.class)
                 .getSingleResult();
     }
 }

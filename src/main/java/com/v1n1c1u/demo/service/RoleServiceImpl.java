@@ -56,8 +56,8 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public PaginationUtil<Role> getPagination(int page) {
-        return dao.getPagination(page);
+    public PaginationUtil<Role> getPagination(int page, String order) {
+        return dao.getPagination(page, order);
     }
 
 }

@@ -18,5 +18,5 @@ public interface RoleService {
 
     boolean roleHasEmployeesAssociated(Long id);
 
-    public PaginationUtil<Role> getPagination(int page);
+    public PaginationUtil<Role> getPagination(int page, String order);
 }

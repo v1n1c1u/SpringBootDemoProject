@@ -29,6 +29,9 @@ body {
     display:flex;
     flex-orientation: row;
 }
+.form-inline{
+    display:flex;
+}
 /*
  * Content
  */
@@ -102,11 +105,11 @@ body {
  */
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link, .btn-primary{
 	color: #fff;
-	background-color:#0fb950; /*#1e94d2;*/
+	background-color:#0fb950;
 	border-color:#26ce67;
 }
 .btn-primary:hover, .btn-primary:active, .btn-md:active{
-	background-color:#37bd6a; /*#1e94d2;*/
+	background-color:#37bd6a;
 	border-color:#26ce67;
 }
 .navbar-brand{
@@ -126,8 +129,7 @@ body {
     margin-left: 10px;
 }
 .alert {
-    display: flex;
-    justify-content: space-between;
+    display: block;
 }
 
 /*

@@ -36,9 +36,12 @@ public class RoleController {
     }
 
     @GetMapping("/list")
-    public String list(ModelMap model, @RequestParam("page") Optional<Integer> page){
+    public String list(ModelMap model,
+                       @RequestParam("page") Optional<Integer> page,
+                       @RequestParam("order") Optional<String> order){
         int currentPage = page.orElse(1);
-        PaginationUtil<Role> pageRole = roleService.getPagination(currentPage);
+        String orderingDirection = order.orElse("ASC");
+        PaginationUtil<Role> pageRole = roleService.getPagination(currentPage, orderingDirection);
         model.addAttribute("pageRole", pageRole);
         return "role/list";
     }

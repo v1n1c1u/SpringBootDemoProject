@@ -16,5 +16,5 @@ public interface RoleDAO {
 	
 	public List<Role> findAll();
 
-	PaginationUtil<Role> getPagination(int page);
+	PaginationUtil<Role> getPagination(int page, String order);
 }
