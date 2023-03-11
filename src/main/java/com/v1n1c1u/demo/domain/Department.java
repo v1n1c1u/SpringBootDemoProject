@@ -1,5 +1,6 @@
 package com.v1n1c1u.demo.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -33,8 +34,4 @@ public class Department extends AbstractEntity<Long>{
         this.name = name;
     }
 
-    @Override
-    public String toString(){
-        return "name="+name;
-    }
 }

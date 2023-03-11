@@ -14,11 +14,21 @@
     
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>
-    <title>Demo SpringBoot</title>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+    <script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script src="https://kit.fontawesome.com/01b577ec3a.js" crossorigin="anonymous"></script>
+    <script src="/js/index.js"></script>
+
+    <title>Demo SpringBoot Project</title>
 </head>
 <body>
     <header th:replace="~{fragments/header :: header}"></header>
-
     <div class="layout-main">
         <aside>
             <nav th:replace="~{fragments/sidebar :: nav-sidebar}"></nav>
@@ -26,45 +36,6 @@
 
         <section class="layout-content" layout:fragment="content-body"></section>
     </div>
-
-
     <footer th:replace="~{fragments/footer :: footer}"></footer>
-    
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <!--<script src="/webjars/jquery/jquery.min.js"></script>-->
-	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<!--<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
-    <script src="https://kit.fontawesome.com/01b577ec3a.js" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-	    var url = '';
-
-        $('button[id*="btn_"]').click(function(){
-            url = 'http://localhost:8080/'+$(this).attr('id').split("_")[1];
-            $("#myModal").modal('show');
-        });
-
-        $('button[id="ok_confirm"]').click(function(){
-            document.location.href = url;
-        });
-        $('button[id="cancel_confirm"]').click(function(){
-            $("#myModal").modal('hide');
-            url = '';
-        });
-		$(function() {
-			$('[data-toggle="popover"]').popover();
-		});
-
-		$(document).ready(function(){
-		    $(".navbar-toggle").click(function(){
-		        $(".sidebar").toggleClass("sidebar-open");
-		    })
-		});
-	</script>
 </body>
 </html>

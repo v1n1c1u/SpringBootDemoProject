@@ -32,6 +32,16 @@ body {
 .form-inline{
     display:flex;
 }
+.search-form > input, .search-form > select{
+    margin-right:10px;
+}
+
+.search-button {
+    min-width:100px !important;
+}
+.search-tag {
+    border-radius: 20px 20px 20px 20px;
+}
 /*
  * Content
  */
@@ -108,7 +118,7 @@ body {
 	background-color:#0fb950;
 	border-color:#26ce67;
 }
-.btn-primary:hover, .btn-primary:active, .btn-md:active{
+.btn-primary:hover, .btn-primary.active, .btn-md.active{
 	background-color:#37bd6a;
 	border-color:#26ce67;
 }
@@ -208,7 +218,9 @@ footer ul {
   flex-direction: column;
   justify-content: center;
 }
-
+.centered-text{
+    text-align: center;
+}
 .about-div {
     font-size: 24px;
     text-align: center;

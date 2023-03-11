@@ -17,11 +17,13 @@ public interface EmployeeService {
 
     List<Employee> findAll();
 
-    List<Employee> findByName(String name);
+    List<Employee> findByName(String name, int page);
 
     List<Employee> findByRoleID(Long roleID);
 
     List<Employee> findByDates(LocalDate startDate, LocalDate finishDate);
 
     PaginationUtil<Employee> getPagination(int currentPage, String order);
+
+    PaginationUtil<Employee> getPagination(List<Employee> searchResult, int currentPage, String orderDirection);
 }
