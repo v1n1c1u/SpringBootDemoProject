@@ -24,7 +24,7 @@ public class Address extends AbstractEntity<Long>{
     private State state;
 
     @NotBlank
-    @Size(min=9,max=9, message = "{Size.address.postalCode}")
+    @Size(min = 9,max = 9, message = "{Size.address.postalCode}")
     @Column(nullable = false, length = 9)
     private String postalCode;
 
@@ -32,7 +32,9 @@ public class Address extends AbstractEntity<Long>{
     @Digits(integer = 5, fraction = 0)
     @Column(nullable = false, length = 5)
     private Integer number;
-    
+
+    @Size(max = 255)
+    @Column(nullable = true)
     private String complement;
     
     public String getComplement() {
@@ -83,8 +85,8 @@ public class Address extends AbstractEntity<Long>{
         this.number = number;
     }
 
-    //@Override
-    public String toString2() {
+    @Override
+    public String toString() {
         return "Address{" +
                 "address='" + address + '\'' +
                 ", city='" + city + '\'' +

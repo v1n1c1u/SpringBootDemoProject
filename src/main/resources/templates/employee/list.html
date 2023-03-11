@@ -27,10 +27,10 @@
 						aria-controls="collapseName">Name
 				</button>
 				<button class="btn btn-primary search-tag" type="button" data-bs-toggle="collapse" href="#collapseRole"
-						aria-controls="collapseCargo">Role
+						aria-controls="collapseRole">Role
 				</button>
 				<button class="btn btn-primary search-tag" type="button" data-bs-toggle="collapse" href="#collapseDate"
-						aria-controls="collapseData">Dates
+						aria-controls="collapseDate">Dates
 				</button>
 			</p>
 			<div class="row">
@@ -55,7 +55,7 @@
 					<div class="collapse" id="collapseRole">
 						<nav class="navbar navbar-light bg-light">
 							<form class="form-inline search-form" method="GET" th:action="@{/employees/search/role}">
-								<select class="form-control mr-sm-2" th:name="id" aria-label="Search">
+								<select class="form-control mr-sm-2" th:name="role" aria-label="Search">
 									<option value="">Role</option>
 									<option th:each="r : ${roles}" th:value="${r.id}" th:text="${r.name}"></option>
 								</select>
@@ -100,10 +100,10 @@
 						<th>Salary</th>
 						<th>Department</th>
 						<th>Role</th>
-						<th>Address</th>
+						<th class="centered-text">Address</th>
 						<th>Start Date</th>
 						<th>Termination Date</th>
-						<th>Action</th>
+						<th class="centered-text">Action</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -113,33 +113,29 @@
 							<td th:text="|R$ ${{e.salary}}|"></td>
 							<td th:text="${e.role.department.name}"></td>
 							<td th:text="${e.role.name}"></td>
-							<td>
+							<td class="centered-text">
 								<button type="button" class="btn btn-secondary btn-sm popover-btn" data-container="body"
-										data-toggle="popover" data-placement="top" title="View Address"
-										th:attr="data-content='Still working on it! Hold on...'"
-								>
-										<!--
-										th:/attr="data-content=${#strings.concat(
-											e./address.address, ', ',
-											e./address.number, ' ',
-											e./address.complement,, ' - ',
-											e./address.city, ' - ',
-											e./address.state.acronym, ' - ',
-											e./address.postalCode
-										)}"
-										-->
-									<span class="oi oi-eye" title="Visualize" aria-hidden="true"></span>
+										data-toggle="popover" data-bs-placement="top"
+										th:attr="data-bs-content=${#strings.concat(
+													e.address.address, ', ',
+													e.address.number, ' ',
+													e.address.complement, ' - ',
+													e.address.city, ' - ',
+													e.address.state.acronym, ' - ',
+													e.address.postalCode
+													)}"
+										>
+									<span class="oi oi-eye" title="View address" aria-hidden="true"></span>
 								</button>
 							</td>
 							<td th:text="${#temporals.format(e.startDate, 'dd/MM/yyyy')}"></td>
 							<td th:text="${e.finishDate == null ? '':#temporals.format(e.finishDate, 'dd/MM/yyyy')}"></td>
-							<td></td>
-							<td colspan="2">
+							<td colspan="2" class="centered-text">
 								<a class="btn btn-info btn-sm" th:href="@{/employees/edit/{id} (id=${e.id})}" role="button">
 									<span class="oi oi-brush" title="Edit" aria-hidden="true"></span>
 								</a>
-								<button th:id="${ 'btn_employees/delete/' + e.id}" type="button" class="btn btn-danger btn-sm"
-										data-toggle="modal" data-target="#myModal">
+								<button th:id="${'btn_employees/delete/' + e.id}" type="button" class="btn btn-danger btn-sm"
+										data-bs-toggle="modal" data-bs-target="#myModal">
 									<span class="oi oi-circle-x" title="Delete" aria-hidden="true"></span>
 								</button>
 							</td>

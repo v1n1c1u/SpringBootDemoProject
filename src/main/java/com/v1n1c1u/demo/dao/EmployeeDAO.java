@@ -17,7 +17,7 @@ public interface EmployeeDAO {
 	
 	public List<Employee> findAll();
 
-    List<Employee> findByName(String name);
+    List<Employee> findByName(String name, int page);
 
 	List<Employee> findByRoleID(Long roleID);
 
@@ -28,4 +28,6 @@ public interface EmployeeDAO {
 	List<Employee> findByFinishDate(LocalDate finishDate);
 
 	public PaginationUtil<Employee> getPagination(int page, String order);
+
+    PaginationUtil<Employee> getPagination(List<Employee> searchResult, int page, String order);
 }

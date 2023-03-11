@@ -46,8 +46,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public List<Employee> findByName(String name) {
-        return dao.findByName(name);
+    public List<Employee> findByName(String name, int page) {
+        return dao.findByName(name, page);
     }
 
     @Override
@@ -68,6 +68,11 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public PaginationUtil<Employee> getPagination(int page, String order) {
         return dao.getPagination(page, order);
+    }
+
+    @Override
+    public PaginationUtil<Employee> getPagination(List<Employee> searchResult, int page, String order) {
+        return dao.getPagination(searchResult,page, order);
     }
 
     public EmployeeDAO getDao() {

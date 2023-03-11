@@ -1,5 +1,6 @@
 package com.v1n1c1u.demo.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -48,12 +49,4 @@ public class Role extends AbstractEntity<Long>{
         this.department = department;
     }
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "name='" + name + '\'' +
-                ", department=" + department+
-                ", employees=" + employees +
-                '}';
-    }
 }

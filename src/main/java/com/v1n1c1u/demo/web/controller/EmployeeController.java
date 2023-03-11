@@ -55,7 +55,6 @@ public class EmployeeController {
                         @RequestParam("page") Optional<Integer> page,
                         @RequestParam("order") Optional<String> order){
         model.addAttribute("roles", roleService.findAll());
-
         int currentPage = page.orElse(1);
         String orderDirection = order.orElse("ASC");
         PaginationUtil<Employee> pageEmployee = employeeService.getPagination(currentPage, orderDirection);
@@ -94,21 +93,46 @@ public class EmployeeController {
         return "redirect:/employees/list";
     }
     @GetMapping("/search/name")
-    public String getByName(@RequestParam("name") String name, ModelMap model){
-        model.addAttribute("employees", employeeService.findByName(name));
+    public String getByName(ModelMap model,
+                            @RequestParam("name") String name,
+                            @RequestParam("page") Optional<Integer> page,
+                            @RequestParam("order") Optional<String> order){
+        /*
+
+        TODO: Pagination for search results still not working properly...
+        model.addAttribute("roles", roleService.findAll());
+        int currentPage = page.orElse(1);
+        List<Employee> searchResult = employeeService.findByName(name, currentPage);
+        String orderDirection = order.orElse("ASC");
+        PaginationUtil<Employee> pageEmployee = employeeService.getPagination(searchResult,currentPage, orderDirection);
+        model.addAttribute("pageEmployee", pageEmployee);
         return "/employee/list";
+         */
+
+        return list(model, Optional.of(1), Optional.of("ASC"));
     }
     @GetMapping("/search/role")
     public String getByRole(@RequestParam("role") Long roleID, ModelMap model){
+       /*
+       TODO: Pagination for search results still not working properly...
+
         model.addAttribute("employees", employeeService.findByRoleID(roleID));
         return "/employee/list";
+        */
+        return list(model, Optional.of(1), Optional.of("ASC"));
+
     }
     @GetMapping("/search/date")
     public String getByDates(@RequestParam(value = "start", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                              @RequestParam(value = "finish", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate finishDate,
                              ModelMap model){
+        /*
+        TODO: Pagination for search results still not working properly...
+
         model.addAttribute("employees", employeeService.findByDates(startDate,finishDate));
-        return "/employee/list";
+         return "/employee/list";
+        */
+        return list(model, Optional.of(1), Optional.of("ASC"));
     }
 
     @GetMapping("/get/{id}")
